@@ -15,3 +15,7 @@ class TeacherSeeder extends Seeder
         //
     }
 }
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 705bd9b88e8fc62321ddf2966e0ac4312e0ea7b7

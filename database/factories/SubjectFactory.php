@@ -13,8 +13,19 @@ class SubjectFactory extends Factory
     public function definition(): array
     {
         return [
+<<<<<<< HEAD
             'name' => $this->faker->unique()->word(),
             'description' => $this->faker->sentence(5),
+=======
+            'name' => fake()->unique()->randomElement([
+                'Web Development',
+                'Desktop Development',
+                'Informatika',
+                'Game Development',
+                'Mobile Development',
+            ]),
+            'description' => fake()->sentence(5),
+>>>>>>> 705bd9b88e8fc62321ddf2966e0ac4312e0ea7b7
         ];
     }
 

@@ -15,8 +15,13 @@ class DatabaseSeeder extends Seeder
             ClassroomSeeder::class,
         ]);
         
+<<<<<<< HEAD
         Subject::factory(5)
         // ->hasTeacher() 
         ->create();
+=======
+        Subject::factory()->count(5)->create();
+
+>>>>>>> 705bd9b88e8fc62321ddf2966e0ac4312e0ea7b7
     }
 }

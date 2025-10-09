@@ -7,7 +7,11 @@
                 <tr>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">No</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Name</th>
+<<<<<<< HEAD
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Desctiption</th>
+=======
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Description</th>
+>>>>>>> 705bd9b88e8fc62321ddf2966e0ac4312e0ea7b7
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Teacher</th>
                 </tr>
             </thead>
