@@ -16,10 +16,12 @@ return new class extends Migration
             $table->String('name');
             $table->String('email')->unique();
             $table->date('date_of_birth');  
-            $table->String('grade');
             $table->String('gender');
             $table->String('address');
-           
+            $table->string('grade');
+
+            $table->integer('classroom_id');
+            
             $table->timestamps();
         });
     }
