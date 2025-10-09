@@ -17,7 +17,7 @@ class StudentSeeder extends Seeder
 
         // User::factory(10)->create();
 
-        Student::factory(15)->create();
+        // Student::factory(15)->create(); // sudah terpanggil di classroomnya
 
         // User::factory()->create([
         //     'name' => 'Test User',

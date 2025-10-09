@@ -18,7 +18,10 @@ return new class extends Migration
             $table->date('date_of_birth');  
             $table->String('gender');
             $table->String('address');
+<<<<<<< HEAD
+=======
             $table->string('grade');
+>>>>>>> 705bd9b88e8fc62321ddf2966e0ac4312e0ea7b7
 
             $table->integer('classroom_id');
             
