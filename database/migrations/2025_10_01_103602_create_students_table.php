@@ -15,13 +15,15 @@ return new class extends Migration
             $table->id();
             $table->String('name');
             $table->String('email')->unique();
-            $table->date('date_of_birth');  
-            $table->String('gender');
+            
+            // --- Perubahan di Sini: Membuat kolom opsional ---
+            $table->date('date_of_birth')->nullable(); 
+            $table->String('gender')->nullable();      
             $table->String('address');
-            $table->string('grade');
+            $table->string('grade')->nullable();
 
             $table->integer('classroom_id');
-            
+            // ...
             $table->timestamps();
         });
     }

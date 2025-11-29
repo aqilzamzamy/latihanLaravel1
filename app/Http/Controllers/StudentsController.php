@@ -55,6 +55,41 @@ class StudentsController extends Controller
         return view('students',['title' => 'Daftar Siswa', 'students' => $student]);
     }
 
+    public function adminIndex()
+    {
+        $students = Student::all();
+        $classrooms = Classroom::all();
+
+        return view('admin.student', [
+            'title' => 'Data Students (Admin)',
+            'students' => $student,
+            // 'classrooms' => $classrooms
+        ]);
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'address' => 'required',
+            'email' => 'nullable|email',
+            'birthday' => 'required|date',
+            'classroom_id' => 'nullable|exists:classrooms,id',
+        ]);
+
+        Student::create([
+            'name' => $request->name,
+            'address' => $request->address,
+            'email' => $request->email,
+            'birthday' => $request->birthday,
+            'classroom_id' => $request->classroom_id,
+        ]);
+
+        return back()->with('success', 'Data siswa berhasil ditambahkan!');
+    }
+
+
+
     /**
      * Show the form for creating a new resource.
      */
@@ -66,11 +101,6 @@ class StudentsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        //
-    }
-
     /**
      * Display the specified resource.
      */

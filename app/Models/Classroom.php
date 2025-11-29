@@ -9,6 +9,7 @@ class Classroom extends Model
 {
     use HasFactory;
 
+    protected $table = 'classrooms';
     protected $fillable = ['name'];
 
     // ini one to many

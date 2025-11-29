@@ -8,11 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Subject extends Model
 {
     use HasFactory;
-
+    
+    // protected $table = 'subjects';
     protected $fillable = ['name', 'description'];
 
     public function teacher()
     {
-        return $this->hasOne(Teacher::class);
+        return $this->hasOne(Teacher::class, 'subject_id');
     }
 }
