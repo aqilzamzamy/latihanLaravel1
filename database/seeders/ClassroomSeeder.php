@@ -15,7 +15,11 @@ class ClassroomSeeder extends Seeder
     public function run(): void
     {
         Classroom::factory(6)
+<<<<<<< HEAD
+        ->hasStudents(5) 
+=======
         ->hasStudents(5) // 4 kelas, masing-masing punya 5 student
+>>>>>>> 705bd9b88e8fc62321ddf2966e0ac4312e0ea7b7
         ->create();
     }
 }

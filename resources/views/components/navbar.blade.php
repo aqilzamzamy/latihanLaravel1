@@ -25,7 +25,15 @@
               <x-nav-link href="/kontak" :active="request()->is('kontak')">Kontak</x-nav-link>
               <x-nav-link href="/students" :active="request()->is('students')">Student</x-nav-link>
               <x-nav-link href="/guardian" :active="request()->is('guardian')">Guardian</x-nav-link>
+<<<<<<< HEAD
               <x-nav-link href="/classroom" :active="request()->is('classroom')">Classroom</x-nav-link>
+=======
+<<<<<<< HEAD
+              <x-nav-link href="/classroom" :active="request()->is('classroom')">Classroom</x-nav-link>
+=======
+
+>>>>>>> 705bd9b88e8fc62321ddf2966e0ac4312e0ea7b7
+>>>>>>> 391d12ebfdc4015d2cbd7c1633a9434ce6f05612
               <x-nav-link href="/teacher" :active="request()->is('teacher')">Teacher</x-nav-link>
               <x-nav-link href="/subject" :active="request()->is('subject')">Subject</x-nav-link>
             </div>

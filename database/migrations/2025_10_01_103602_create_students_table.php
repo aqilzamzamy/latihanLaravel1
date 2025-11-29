@@ -20,7 +20,14 @@ return new class extends Migration
             $table->date('date_of_birth')->nullable(); 
             $table->String('gender')->nullable();      
             $table->String('address');
+<<<<<<< HEAD
             $table->string('grade')->nullable();
+=======
+<<<<<<< HEAD
+=======
+            $table->string('grade');
+>>>>>>> 705bd9b88e8fc62321ddf2966e0ac4312e0ea7b7
+>>>>>>> 391d12ebfdc4015d2cbd7c1633a9434ce6f05612
 
             $table->integer('classroom_id');
             // ...

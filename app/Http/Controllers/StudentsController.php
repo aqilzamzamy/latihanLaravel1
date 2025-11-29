@@ -52,6 +52,7 @@ class StudentsController extends Controller
 
         $student = Student::all();
 
+<<<<<<< HEAD
         return view('students',['title' => 'Daftar Siswa', 'students' => $student]);
     }
 
@@ -131,5 +132,8 @@ class StudentsController extends Controller
     public function destroy(string $id)
     {
         //
+=======
+        return view('student',['title' => 'Daftar Siswa', 'students' => $student]);
+>>>>>>> 391d12ebfdc4015d2cbd7c1633a9434ce6f05612
     }
 }
