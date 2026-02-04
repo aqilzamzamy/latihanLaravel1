@@ -1,18 +1,18 @@
-@props(['href' => '#', 'label' => '', 'active' => false])
+@props(['href' => null, 'active' => false])
 
-<a
-    href="{{ $href }}"
-    class="flex items-center p-2 text-base font-medium rounded-lg group transition-colors duration-150
-    {{ $active 
-          ? 'text-blue-600 bg-gray-100 dark:bg-gray-700 dark:text-white' 
-          : 'text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700' }}"
->
-    
-    {{-- Ikon (Sekarang menggunakan $slot) --}}
-    <div class="w-6 h-6 mr-3">
+@if ($href)
+    <a href="{{ $href }}" {{ $attributes->merge([
+            'class' => ($active
+                ? 'bg-gray-800 text-white'
+                : 'text-gray-400 hover:bg-gray-800 hover:text-white')
+                . ' flex items-center gap-3 rounded-lg px-4 py-2.5 transition-all duration-150 font-medium'
+        ]) }}>
+        {{ $slot }}
+    </a>
+@else
+    <div {{ $attributes->merge([
+            'class' => 'text-gray-500 flex items-center gap-3 rounded-lg px-4 py-2.5 font-medium cursor-default'
+        ]) }}>
         {{ $slot }}
     </div>
-
-    {{-- Teks (Sekarang menggunakan $label) --}}
-    <span>{{ $label }}</span>
-</a>
+@endif

@@ -3,38 +3,28 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\Subject;
-use App\Models\Teacher;
 
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Subject>
+ */
 class SubjectFactory extends Factory
 {
-    protected $model = Subject::class;
-
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
     public function definition(): array
     {
         return [
-<<<<<<< HEAD
-            'name' => $this->faker->unique()->word(),
-            'description' => $this->faker->sentence(5),
-=======
-            'name' => fake()->unique()->randomElement([
-                'Web Development',
-                'Desktop Development',
+            'name' => $this->faker->unique()->randomElement([
+                'IPA',
+                'IPS',
                 'Informatika',
-                'Game Development',
-                'Mobile Development',
+                'Bahasa Jawa',
+                'bahasa jepang'
             ]),
-            'description' => fake()->sentence(5),
->>>>>>> 705bd9b88e8fc62321ddf2966e0ac4312e0ea7b7
+          'description' => fake()->text()
         ];
-    }
-
-    public function configure()
-    {
-        return $this->afterCreating(function (Subject $subject) {
-            Teacher::factory()->create([
-                'subject_id' => $subject->id,
-            ]);
-        });
     }
 }

@@ -1,63 +1,72 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProfilController;
-use App\Http\Controllers\StudentsController;
-use App\Http\Controllers\GuardianController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ClassroomAdminController;
 use App\Http\Controllers\ClassroomController;
-use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\GuardianAdminController;
+use App\Http\Controllers\GuardianController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfilController;
+
+use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\StudentAdminController;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\SubjectAdminController;
 use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\TeacherAdminController;
+use App\Http\Controllers\TeacherController;
+use App\View\Components\admin\admin;
+use Illuminate\Support\Facades\Route;
 
-Route::get('/', [ProfilController::class, "index"]);
-Route::get('/profil', [ProfilController::class, 'profil']);
-Route::get('/kontak', [ProfilController::class, 'kontak']);
-Route::get('/home', [ProfilController::class, 'home']);
-Route::get('/students', [StudentsController::class, 'index']);
-Route::get('/guardian', [GuardianController::class, 'index']);
-Route::get('/classroom', [ClassroomController::class, 'index']);
-Route::get('/teacher', [TeacherController::class, 'index']);
-Route::get('/subject', [SubjectController::class, 'index']);
+Route::get('/', function () {
+    return redirect()->route('login');
+});
 
-// Admin 
-use App\Http\Controllers\Admin\AdminStudentController;
-use App\Http\Controllers\Admin\AdminTeacherController;
-use App\Http\Controllers\Admin\AdminGuardianController;
-use App\Http\Controllers\Admin\AdminSubjectController;
-use App\Http\Controllers\Admin\AdminClassroomController;
-use App\Http\Controllers\Admin\AdminProfilController;
-use App\Http\Controllers\Admin\AdminContactController;
-use App\Http\Controllers\Admin\AdminDashboardController;
+Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login.process');
+
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/profile', [ProfilController::class, 'profil']);
+
+Route::get('/kontak', [ContactController::class, 'contact',]);
+
+Route::get('/home', [HomeController::class, 'index']);
+
+Route::get('/student', [StudentController::class, 'index',]);
+
+Route::get('/wali', [GuardianController::class, 'index',]);
+
+Route::get('/classrooms', [ClassroomController::class, 'index',]);
+Route::get('/teacher', [TeacherController::class, 'index',]);
+Route::get('/subjects', [SubjectController::class, 'index',]);
+// Route::get('/dashboard', function () {
+//     return view('admin.dashboard');
+// })->name('admin.dashboard');
+// Route::resource('students', StudentAdminController::class); //diambil dari nama folder
+// Route::resource('guardians', GuardianAdminController::class);
+// Route::resource('teachers', TeacherAdminController::class);
+// Route::resource('classroom', ClassroomAdminController::class);
+// Route::resource('subject', SubjectAdminController::class);
+
+Route::middleware(['auth', 'admin'])
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
+
+        Route::get('/dashboard', function () {
+            return view('admin.dashboard');
+        })->name('dashboard');
+
+        Route::resource('students', StudentAdminController::class);
+        Route::resource('guardians', GuardianAdminController::class);
+        Route::resource('teachers', TeacherAdminController::class);
+        Route::resource('classrooms', ClassroomAdminController::class);
+        Route::resource('subjects', SubjectAdminController::class);
+    });
 
 
-Route::prefix('admin')->name('admin.')->group(function () {
-
-    // Route::get('/profil', [AdminProfilController::class, 'index'])->name('profil');
-    // Route::get('/kontak', [AdminContactController::class, 'index'])->name('contact.index');
-    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
-
-    // Classroom admin
-    Route::get('/classroom', [AdminClassroomController::class, 'index'])->name('classroom.index');
-    Route::post('/classroom', [AdminClassroomController::class, 'store'])->name('classroom.store');
-
-    // Student admin
-    Route::get('/students', [AdminStudentController::class, 'index'])->name('students.index');
-    Route::post('/students', [AdminStudentController::class, 'store'])->name('students.store');
-    Route::put('/student/{student}', [AdminStudentController::class, 'update'])->name('student.update');
-    Route::delete('/students/{student}', [AdminStudentController::class, 'destroy'])->name('students.destroy');
-
-    // Teacher admin
-    Route::get('/teacher', [AdminTeacherController::class, 'index'])->name('teacher.index');
-    Route::post('/teacher', [AdminTeacherController::class, 'store'])->name('teacher.store');
-    Route::put('/teacher/{teacher}', [AdminTeacherController::class, 'update'])->name('teacher.update');
-    Route::delete('/teacher/{teacher}', [AdminTeacherController::class, 'destroy'])->name('teacher.destroy');
-
-    // Guardian admin
-    Route::get('/guardian', [AdminGuardianController::class, 'index'])->name('guardian.index');
-    Route::post('/guardian', [AdminGuardianController::class, 'store'])->name('guardian.store');
-    Route::put('/guardian/{guardian}', [AdminGuardianController::class, 'update'])->name('guardian.update');
-    Route::delete('/guardian/{guardian}', [AdminGuardianController::class, 'destroy'])->name('guardian.destroy');
-
-    // Subject admin
-    Route::get('/subject', [AdminSubjectController::class, 'index'])->name('subject.index');
-    Route::post('/subject', [AdminSubjectController::class, 'store'])->name('subject.store');
+Route::middleware('guest')->group(function () {
+    Route::get('/', [AuthController::class, 'showLogin'])->name('login');
+    Route::post('/login', [AuthController::class, 'login'])->name('login.process');
 });

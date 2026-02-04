@@ -1,22 +1,39 @@
-<form action="{{ route('admin.classroom.store') }}" method="POST" class="space-y-4">
-    @csrf
-    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-        Tambah Kelas Baru
-    </h3>
+<x-admin.layout>
+    <div class="p-6">
+        <h1 class="text-xl font-bold mb-4">Tambah Classroom</h1>
 
-    <div class="grid gap-4 sm:grid-cols-1">
-        <div>
-            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Kelas</label>
-            <input type="text" name="name" id="name" required
-                class="w-full border rounded-lg p-2.5 text-sm text-gray-900 bg-gray-50 border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Contoh: X IPA 1">
-        </div>
-    </div>
+        <form action="{{ route('admin.classrooms.store') }}" method="POST">
+            @csrf
 
-    <div class="flex justify-end space-x-2">
-        <button type="submit"
-            class="px-4 py-2 bg-blue-700 text-white rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 text-sm font-medium">
-            Simpan
-        </button>
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label class="block mb-1 font-semibold">Nama Classroom:</label>
+                    <input 
+                        type="text" 
+                        name="name" 
+                        class="border w-full p-2 rounded focus:outline-none focus:ring focus:ring-green-300" 
+                        placeholder="Masukkan nama classroom" 
+                        required
+                    >
+                    
+                </div>
+            </div>
+  
+            <div class="mt-6">
+                <button 
+                    type="submit" 
+                    class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded"
+                >
+                    Simpan
+                </button>
+
+                <a 
+                    href="{{ route('admin.classrooms.index') }}" 
+                    class="ml-2 bg-gray-400 hover:bg-gray-500 text-white px-4 py-2 rounded"
+                >
+                    Batal
+                </a>
+            </div>
+        </form>
     </div>
-</form>
+</x-admin.layout>

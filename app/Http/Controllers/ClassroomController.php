@@ -9,12 +9,9 @@ class ClassroomController extends Controller
 {
     public function index()
     {
-<<<<<<< HEAD
-        $classrooms = Classroom::all();
-        return view('classroom', [
-            'title' => 'Data Classroom',
-            'classrooms' => $classrooms
-        ]);
+        $classroom = Classroom::all();
+        $title = "classroom";
+        return view('classroom',['title' => $title,'classrooms' => $classroom]);
     }
 
     // PERBAIKAN UTAMA: Tambahkan Eager Loading 'students'
@@ -37,29 +34,3 @@ class ClassroomController extends Controller
     public function update(Request $request, string $id) {}
     public function destroy(string $id) {}
 }
-=======
-        $classroom = Classroom::all();
-        return view('classroom',['title' => 'Daftar Kelas', 'classrooms' => $classroom]);
-    }
-
-    public function store(Request $request)
-    {
-
-    }
-
-    public function show(Classroom $classroom)
-    {
-
-    }
-
-    public function update(Request $request, Classroom $classroom)
-    {
-
-    }
-
-    public function destroy(Classroom $classroom)
-    {
-
-    }
-}
->>>>>>> 391d12ebfdc4015d2cbd7c1633a9434ce6f05612

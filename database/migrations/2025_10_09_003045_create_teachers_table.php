@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('teachers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email')->unique(); 
-            $table->string('address');
+            $table->string('subject_id');
             $table->string('phone');
-            $table->integer('subject_id');
+            $table->string('email');
+            $table->string('address');
             $table->timestamps();
         });
     }

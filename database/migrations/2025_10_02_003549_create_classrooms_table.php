@@ -14,10 +14,6 @@ return new class extends Migration
         Schema::create('classrooms', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-<<<<<<< HEAD
-=======
-            
->>>>>>> 705bd9b88e8fc62321ddf2966e0ac4312e0ea7b7
             $table->timestamps();
         });
     }

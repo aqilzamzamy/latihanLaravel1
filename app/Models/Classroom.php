@@ -7,14 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Classroom extends Model
 {
+    /** @use HasFactory<\Database\Factories\ClassroomFactory> */
     use HasFactory;
 
-    protected $table = 'classrooms';
     protected $fillable = ['name'];
 
-    // ini one to many
-    public function students()
-    {
-        return $this->hasMany(Student::class, 'classroom_id');
+    public function students(){
+        return $this->hasMany(Student::class,'classroom_id');
     }
 }

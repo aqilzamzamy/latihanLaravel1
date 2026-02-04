@@ -17,7 +17,12 @@ class ClassroomFactory extends Factory
     public function definition(): array
     {
         return [
-            'name'      => $this->faker->unique()->randomElement(['11 pplg 1', '11 pplg 2', '11 pplg 3', '11 pplg 4', '11 pplg 5', '11 pplg 6']),
+            'name' => $this->faker->randomElement([
+                '10 PPLG 1',
+                '10 PPLG 2',
+                '11 PPLG 1',
+                '11 PPLG 2',
+            ])
         ];
     }
 }

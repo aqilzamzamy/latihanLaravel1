@@ -13,14 +13,10 @@ return new class extends Migration
     {
         Schema::create('guardians', function (Blueprint $table) {
             $table->id();
-            $table->String('name');
-            $table->String('job');
-            $table->String('phone')->unique();
-            $table->String('email')->unique();
-            $table->String('address');
-
-
-            
+            $table -> string('name') ;
+            $table -> string('job');
+            $table -> string('phone');
+            $table -> string('email');
             $table->timestamps();
         });
     }

@@ -15,7 +15,7 @@
             Total Students
           </th>
         </tr>
-      </thead>
+      </thead>composer install --ignore-platform-reqs
       <tbody class="bg-white divide-y divide-gray-200">
        @foreach ($classrooms as $classroom)
         <tr class="hover:bg-gray-100 transition-colors duration-200">
