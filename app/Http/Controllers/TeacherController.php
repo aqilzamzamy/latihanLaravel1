@@ -7,8 +7,9 @@ use Illuminate\Http\Request;
 
 class TeacherController extends Controller
 {
-    public function index() {
-    $teachers = Teacher::all(); 
-    return view('teacher', ['title' => $title, 'teachers' => $teachers]); 
-}
+    public function index(){
+        $teacher = Teacher::all();
+        $title = 'guru';
+        return view('teacher', ['title' => $title, 'teacher' => $teacher]);
+    }
 }

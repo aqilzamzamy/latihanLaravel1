@@ -13,13 +13,13 @@
                 </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
-                @foreach ($teachers as $index => $teacher)
+                @foreach ($teacher as $guru)
                     <tr>
                         <td class="px-6 py-4">{{ $loop->iteration }}</td>
-                        <td class="px-6 py-4">{{ $teacher->name }}</td>
-                        <td class="px-6 py-4">{{ $teacher->subject->name ?? '-' }}</td>
-                        <td class="px-6 py-4">{{ $teacher->phone }}</td>
-                        <td class="px-6 py-4">{{ $teacher->address }}</td>
+                        <td class="px-6 py-4">{{ $guru['name'] }}</td>
+                        <td class="px-6 py-4">{{ $guru->subject->name}}</td>
+                        <td class="px-6 py-4">{{ $guru['phone'] }}</td>
+                        <td class="px-6 py-4">{{ $guru['address'] }}</td>
                     </tr>
                 @endforeach
             </tbody>

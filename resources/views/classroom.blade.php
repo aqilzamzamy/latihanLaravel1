@@ -1,36 +1,24 @@
 <x-layout>
-  <x-slot:judul>{{ $title }}</x-slot:judul>
+    <x-slot:judul>{{ $title }}</x-slot:judul>
 
-  <div class="overflow-hidden rounded-xl shadow-lg border border-gray-200">
-    <table class="min-w-full divide-y divide-gray-200">
-      <thead class="bg-gray-50">
-        <tr>
-          <th scope="col" class="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
-            No
-          </th>
-          <th scope="col" class="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
-            Classroom
-          </th>
-          <th scope="col" class="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
-            Total Students
-          </th>
-        </tr>
-      </thead>composer install --ignore-platform-reqs
-      <tbody class="bg-white divide-y divide-gray-200">
-       @foreach ($classrooms as $classroom)
-        <tr class="hover:bg-gray-100 transition-colors duration-200">
-          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-medium">
-            {{ $loop->iteration }}
-          </td>
-          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-            {{ $classroom->name }}
-          </td>
-          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-            {{ $classroom->students->count() }}
-          </td>
-        </tr>
-       @endforeach
-      </tbody>
-    </table>
-  </div>
+    <div class="max-w-7xl mx-auto bg-white shadow-md rounded-lg overflow-hidden mt-5">
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-100">
+                <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">No</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Classroom</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Total Students</th>
+                </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+                @foreach ($classrooms as $classroom)
+                    <tr>
+                        <td class="px-6 py-4">{{ $loop->iteration }}</td>
+                        <td class="px-6 py-4">{{ $classroom->name }}</td>
+                        <td class="px-6 py-4">{{ $classroom->students->count() }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 </x-layout>

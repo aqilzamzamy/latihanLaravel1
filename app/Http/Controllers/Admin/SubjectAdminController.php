@@ -2,66 +2,64 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Student;
+use App\Models\Subject;
 use Illuminate\Http\Request;
 
-class StudentController extends Controller
+class SubjectAdminController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        $students =  Student::all(); 
-        $title = 'Siswa';
-        return view('student', ['title' => $title,'students' => $students]);
-    }
+   public function index(Request $request){
+        $search = $request->search;
 
-    /**
-     * Show the form for creating a new resource.
-     */
+        $subjects = Subject::when($search, function ($query) use ($search) {
+            $query->where('name', 'like', "%{$search}%")
+                ->orWhere('description', 'like', "%{$search}%");
+        })->paginate(10);
+
+        return view('subject.index', compact('subjects', 'search'));
+   }
+
     public function create()
     {
-        
+        return view('subject.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required'
+        ]);
+
+        Subject::create([
+            'name' => $request->name,
+            'description' => $request->description
+        ]);
+
+        return redirect()->route('subject.index')
+            ->with('success', 'Subject berhasil ditambahkan');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function edit($id)
     {
-        //
+        $subject = Subject::findOrFail($id);
+        return view('subject.edit', compact('subject'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function update(Request $request, $id)
     {
-        //
-    }
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required'
+        ]);
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+        $subject = Subject::findOrFail($id);
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $subject->update([
+            'name' => $request->name,
+            'description' => $request->description
+        ]);
+
+        return redirect()->route('subject.index')
+            ->with('success', 'Subject berhasil diperbarui');
     }
 }
