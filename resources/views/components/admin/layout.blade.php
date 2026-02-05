@@ -12,7 +12,7 @@
 
         {{-- Navbar --}}
         <x-admin.navbar />
-
+        
         {{-- Sidebar --}}
         <x-admin.sidebar />
 
