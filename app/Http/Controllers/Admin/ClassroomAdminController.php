@@ -17,7 +17,7 @@ class ClassroomAdminController extends Controller
         })->paginate(5);
 
         return view('classroom.index', compact('classroom', 'search'));
-    }
+    }   
     
 
     public function create()
