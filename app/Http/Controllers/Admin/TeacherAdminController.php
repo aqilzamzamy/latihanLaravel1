@@ -38,15 +38,15 @@ class TeacherAdminController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'subject_id' => 'required',
+            'subject_id' => 'required|exists:subjects,id',
             'phone' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:teachers,email',
             'address' => 'required',
         ]);
 
         Teacher::create($request->all());
 
-        return redirect()->route('teachers.index')->with('success', 'Guru berhasil ditambahkan.');
+        return redirect()->route('admin.teachers.index')->with('success', 'Guru berhasil ditambahkan.');
     }
 
     public function edit($id)

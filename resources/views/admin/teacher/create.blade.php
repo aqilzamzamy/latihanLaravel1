@@ -36,12 +36,12 @@
             </div>
 
             {{-- Email --}}
-            {{-- <div>
+            <div>
                 <label class="block text-sm font-medium text-gray-700">Email</label>
                 <input type="email" name="email" value="{{ old('email') }}" 
                        class="w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-200" required>
                 @error('email') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
-            </div> --}}
+            </div> 
 
             {{-- Alamat --}}
             <div>
