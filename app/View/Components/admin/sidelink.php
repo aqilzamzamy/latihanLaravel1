@@ -1,19 +1,19 @@
 <?php
 
-namespace App\View\Components\admin;
+namespace App\View\Components\Admin;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class sidelink extends Component
+class Sidelink extends Component
 {
-    /**
-     * Create a new component instance.
-     */
-    public function __construct()
+    public $href;
+    public $active;
+    public function __construct($href = '#', $active = false)
     {
-        //
+        $this->href = $href;
+        $this->active = $active;
     }
 
     /**

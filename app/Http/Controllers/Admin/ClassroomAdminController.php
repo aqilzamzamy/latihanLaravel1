@@ -16,13 +16,13 @@ class ClassroomAdminController extends Controller
             $query->where('name', 'like', "%{$search}%");
         })->paginate(5);
 
-        return view('classroom.index', compact('classroom', 'search'));
+        return view('admin.classroom.index', compact('classroom', 'search'));
     }   
     
 
     public function create()
     {
-        return view('classroom.create');
+        return view('admin.classroom.create');
     }
 
     public function store(Request $request)
@@ -35,13 +35,13 @@ class ClassroomAdminController extends Controller
             'name' => $request->name
         ]);
 
-        return redirect()->route('classroom.index')->with('success', 'Data berhasil ditambahkan');
+        return redirect()->route('admin.classroom.index')->with('success', 'Data berhasil ditambahkan');
     }
 
     public function edit($id)
     {
         $classroom = Classroom::findOrFail($id);
-        return view('classroom.edit', compact('classroom'));
+        return view('admin.classroom.edit', compact('classroom'));
     }
 
     public function update(Request $request, $id)
@@ -56,6 +56,6 @@ class ClassroomAdminController extends Controller
             'name' => $request->name
         ]);
 
-        return redirect()->route('classroom.index')->with('success', 'Data berhasil diupdate');
+        return redirect()->route('admin.classroom.index')->with('success', 'Data berhasil diupdate');
     }
 }

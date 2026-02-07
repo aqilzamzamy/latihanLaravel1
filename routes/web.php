@@ -10,7 +10,7 @@ use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\GuardianController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TeacherController;
@@ -40,7 +40,7 @@ Route::middleware('auth')->group(function () {
     // ========================================
 
     Route::get('/home', [HomeController::class, 'index'])->name('home');
-    Route::get('/profile', [ProfilController::class, 'profil'])->name('profile');
+    Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
     Route::get('/kontak', [ContactController::class, 'contact'])->name('contact');
     Route::get('/student', [StudentController::class, 'index'])->name('students.public');
     Route::get('/wali', [GuardianController::class, 'index'])->name('guardians.public');

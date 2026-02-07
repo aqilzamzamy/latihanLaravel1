@@ -21,13 +21,13 @@ class StudentAdminController extends Controller
                 ->orWhere('gender', 'like', "%{$search}%");
         })->paginate(10);
 
-        return view('students.index', compact('students', 'search'));
+        return view('admin.student.index', compact('students', 'search'));
     }
 
     public function create()
     {
         $classrooms = Classroom::all();
-        return view('students.create', compact('classrooms'));
+        return view('admin.student.create', compact('classrooms'));
     }
     public function store(Request $request)
     {
@@ -41,13 +41,13 @@ class StudentAdminController extends Controller
         ]);
 
         Student::create($request->all());
-        return redirect()->route('students.index')->with('success', 'Data siswa berhasil ditambahkan!');
+        return redirect()->route('admin.student.index')->with('success', 'Data siswa berhasil ditambahkan!');
     }
 
     public function edit(Student $student)
     {
         $classrooms = Classroom::all();
-        return view('students.edit', compact('student', 'classrooms'));
+        return view('admin.student.edit', compact('student', 'classrooms'));
     }
 
     public function update(Request $request, Student $student)
@@ -62,12 +62,12 @@ class StudentAdminController extends Controller
         ]);
 
         $student->update($request->all());
-        return redirect()->route('students.index')->with('success', 'Data siswa berhasil diperbarui!');
+        return redirect()->route('admin.student.index')->with('success', 'Data siswa berhasil diperbarui!');
     }
 
     public function destroy(Student $student)
     {
         $student->delete();
-        return redirect()->route('students.index')->with('success', 'Data siswa berhasil dihapus!');
+        return redirect()->route('admin.student.index')->with('success', 'Data siswa berhasil dihapus!');
     }
 }
