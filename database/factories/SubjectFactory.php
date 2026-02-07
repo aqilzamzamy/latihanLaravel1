@@ -17,14 +17,15 @@ class SubjectFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->unique()->randomElement([
+            'name' => $this->faker->randomElement([
                 'IPA',
                 'IPS',
                 'Informatika',
                 'Bahasa Jawa',
-                'bahasa jepang'
+                'Bahasa Jepang',
             ]),
-          'description' => fake()->text()
+            'description' => $this->faker->sentence(),
         ];
     }
+
 }

@@ -1,40 +1,39 @@
 <x-admin.layout>
     <div class="p-6">
-        <h1 class="text-xl font-bold mb-4">Edit Subject</h1>
+        <h1 class="text-xl font-bold mb-4">Edit Mata Pelajaran</h1>
 
-        <form action="{{ route('admin.subjects.update', $subject->id) }}" method="POST">
+        <form action="{{ route('admin.subject.update', $subject->id) }}" method="POST">
             @csrf
             @method('PUT')
 
-            <div class="grid grid-cols-1 gap-4">
+            <div class="grid grid-cols-2 gap-4">
+
+                {{-- Nama Mapel --}}
                 <div>
-                    <label class="block mb-1 font-semibold">Nama Subject:</label>
+                    <label class="block mb-1 font-semibold">Nama Mapel:</label>
                     <input 
                         type="text" 
                         name="name" 
                         value="{{ old('name', $subject->name) }}" 
-                        class="border w-full p-2 rounded focus:outline-none focus:ring focus:ring-blue-300" 
-                        placeholder="Masukkan nama subject" 
+                        class="border w-full p-2 rounded focus:outline-none focus:ring focus:ring-green-300" 
+                        placeholder="Masukkan nama mapel" 
                         required
                     >
-                    @error('name')
-                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                    @enderror
                 </div>
 
+                {{-- Deskripsi --}}
                 <div>
                     <label class="block mb-1 font-semibold">Deskripsi:</label>
-                    <textarea 
+                    <input 
+                        type="text" 
                         name="description" 
-                        rows="4"
-                        class="border w-full p-2 rounded focus:outline-none focus:ring focus:ring-blue-300" 
-                        placeholder="Masukkan deskripsi subject" 
+                        value="{{ old('description', $subject->description) }}" 
+                        class="border w-full p-2 rounded focus:outline-none focus:ring focus:ring-green-300" 
+                        placeholder="Masukkan deskripsi mapel" 
                         required
-                    >{{ old('description', $subject->description) }}</textarea>
-                    @error('description')
-                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                    @enderror
+                    >
                 </div>
+
             </div>
 
             <div class="mt-6">
@@ -46,7 +45,7 @@
                 </button>
 
                 <a 
-                    href="{{ route('admin.subjects.index') }}" 
+                    href="{{ route('subject.index') }}" 
                     class="ml-2 bg-gray-400 hover:bg-gray-500 text-white px-4 py-2 rounded"
                 >
                     Batal

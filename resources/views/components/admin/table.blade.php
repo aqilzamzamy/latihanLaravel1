@@ -1,4 +1,3 @@
-@props(['buttonLabel', 'onClick' => null, 'href' => null])
 <div>
   <div
     class="flex flex-col md:flex-row items-center justify-between space-y-3

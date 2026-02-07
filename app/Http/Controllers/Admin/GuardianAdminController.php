@@ -18,12 +18,12 @@ class GuardianAdminController extends Controller
                 ->orWhere('email', 'like', "%{$search}%");
         })->paginate(5);
 
-        return view('guardians.index', compact('guardians', 'search'));
+        return view('admin.guardian.index', compact('guardians', 'search'));
     }
 
     public function create()
     {
-        return view('guardians.create');
+        return view('admin.guardian.create');
     }
 
     public function store(Request $request)
@@ -37,14 +37,14 @@ class GuardianAdminController extends Controller
 
         Guardian::create($validated);
 
-        return redirect()->route('guardians.index')
+        return redirect()->route('admin.guardian.index')
             ->with('success', 'Data wali berhasil ditambahkan!');
     }
 
     public function edit($id)
     {
         $guardian = Guardian::findOrFail($id);
-        return view('guardians.edit', compact('guardian'));
+        return view('admin.guardian.edit', compact('guardian'));
     }
 
     public function update(Request $request, $id)
@@ -60,7 +60,7 @@ class GuardianAdminController extends Controller
 
         $guardian->update($validated);
 
-        return redirect()->route('guardians.index')
+        return redirect()->route('admin.guardian.index')
             ->with('success', 'Data wali berhasil diperbarui!');
     }
 
@@ -69,7 +69,7 @@ class GuardianAdminController extends Controller
         $guardian = Guardian::findOrFail($id);
         $guardian->delete();
 
-        return redirect()->route('guardians.index')
+        return redirect()->route('admin.guardian.index')
             ->with('success', 'Data wali berhasil dihapus!');
     }
 }

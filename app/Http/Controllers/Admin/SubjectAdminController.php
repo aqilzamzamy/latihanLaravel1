@@ -16,12 +16,12 @@ class SubjectAdminController extends Controller
                 ->orWhere('description', 'like', "%{$search}%");
         })->paginate(10);
 
-        return view('subject.index', compact('subjects', 'search'));
+        return view('admin.subject.index', compact('subjects', 'search'));
    }
 
     public function create()
     {
-        return view('subject.create');
+        return view('admin.subject.create');
     }
 
     public function store(Request $request)
@@ -36,14 +36,14 @@ class SubjectAdminController extends Controller
             'description' => $request->description
         ]);
 
-        return redirect()->route('subject.index')
+        return redirect()->route('admin.subject.index')
             ->with('success', 'Subject berhasil ditambahkan');
     }
 
     public function edit($id)
     {
         $subject = Subject::findOrFail($id);
-        return view('subject.edit', compact('subject'));
+        return view('admin.subject.edit', compact('subject'));
     }
 
     public function update(Request $request, $id)
@@ -60,7 +60,7 @@ class SubjectAdminController extends Controller
             'description' => $request->description
         ]);
 
-        return redirect()->route('subject.index')
+        return redirect()->route('admin.subject.index')
             ->with('success', 'Subject berhasil diperbarui');
     }
 }

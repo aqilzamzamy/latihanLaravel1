@@ -26,12 +26,12 @@ class TeacherAdminController extends Controller
             ->paginate(4)
             ->withQueryString();
 
-        return view('teachers.index', compact('teachers', 'search'));
+        return view('admin.teacher.index', compact('teachers', 'search'));
     }
 
     public function create(){
         $subjects = Subject::all(); // gunakan $subjects (jamak)
-        return view('teachers.create', compact('subjects'));
+        return view('admin.teacher.create', compact('subjects'));
     }
 
     public function store(Request $request)
@@ -46,14 +46,14 @@ class TeacherAdminController extends Controller
 
         Teacher::create($request->all());
 
-        return redirect()->route('admin.teachers.index')->with('success', 'Guru berhasil ditambahkan.');
+        return redirect()->route('admin.teacher.index')->with('success', 'Guru berhasil ditambahkan.');
     }
 
     public function edit($id)
     {
         $teacher = Teacher::findOrFail($id);
         $subjects = Subject::all();
-        return view('teachers.edit', compact('teacher', 'subjects'));
+        return view('admin.teacher.edit', compact('teacher', 'subjects'));
     }
 
     public function update(Request $request, $id)
@@ -69,7 +69,7 @@ class TeacherAdminController extends Controller
         $teacher = Teacher::findOrFail($id);
         $teacher->update($request->all());
 
-        return redirect()->route('teachers.index')->with('success', 'Data guru berhasil diperbarui.');
+        return redirect()->route('admin.teacher.index')->with('success', 'Data guru berhasil diperbarui.');
     }
 
     public function destroy($id)
@@ -77,6 +77,6 @@ class TeacherAdminController extends Controller
         $teacher = Teacher::findOrFail($id);
         $teacher->delete();
 
-        return redirect()->route('teachers.index')->with('success', 'Guru berhasil dihapus.');
+        return redirect()->route('admin.teacher.index')->with('success', 'Guru berhasil dihapus.');
     }
 }
