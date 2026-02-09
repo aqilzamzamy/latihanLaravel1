@@ -46,7 +46,7 @@ class TeacherAdminController extends Controller
 
         Teacher::create($request->all());
 
-        return redirect()->route('admin.teacher.index')->with('success', 'Guru berhasil ditambahkan.');
+        return redirect()->route('admin.teachers.index')->with('success', 'Guru berhasil ditambahkan.');
     }
 
     public function edit($id)
@@ -58,18 +58,19 @@ class TeacherAdminController extends Controller
 
     public function update(Request $request, $id)
     {
+        $teacher = Teacher::findOrFail($id);
+
         $request->validate([
             'name' => 'required',
-            'subject_id' => 'required',
+            'subject_id' => 'required|exists:subjects,id',
             'phone' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:teachers,email,' . $teacher->id,
             'address' => 'required',
         ]);
 
-        $teacher = Teacher::findOrFail($id);
         $teacher->update($request->all());
 
-        return redirect()->route('admin.teacher.index')->with('success', 'Data guru berhasil diperbarui.');
+        return redirect()->route('admin.teachers.index')->with('success', 'Data guru berhasil diperbarui.');
     }
 
     public function destroy($id)
@@ -77,6 +78,6 @@ class TeacherAdminController extends Controller
         $teacher = Teacher::findOrFail($id);
         $teacher->delete();
 
-        return redirect()->route('admin.teacher.index')->with('success', 'Guru berhasil dihapus.');
+        return redirect()->route('admin.teachers.index')->with('success', 'Guru berhasil dihapus.');
     }
 }
