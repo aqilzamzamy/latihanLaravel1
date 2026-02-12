@@ -1,76 +1,109 @@
 <x-admin.layout>
-    <div class="p-6">
-        <h1 class="text-xl font-bold mb-4">Edit Data Wali</h1>
+    <div class="min-h-screen bg-gray-100 dark:bg-gray-900 py-8">
+        <div class="max-w-3xl mx-auto px-6">
 
-        <form action="{{ route('admin.guardians.update', $guardian->id) }}" method="POST">
-            @csrf
-            @method('PUT')
-
-            <div class="grid grid-cols-2 gap-4">
-                <div>
-                    <label class="block mb-1 font-semibold">Nama:</label>
-                    <input 
-                        type="text" 
-                        name="name" 
-                        value="{{ old('name', $guardian->name) }}" 
-                        class="border w-full p-2 rounded focus:outline-none focus:ring focus:ring-green-300" 
-                        placeholder="Masukkan nama wali" 
-                        required
-                    >
-                </div>
-
-                <div>
-                    <label class="block mb-1 font-semibold">Pekerjaan:</label>
-                    <input 
-                        type="text" 
-                        name="job" 
-                        value="{{ old('job', $guardian->job) }}" 
-                        class="border w-full p-2 rounded focus:outline-none focus:ring focus:ring-green-300" 
-                        placeholder="Masukkan pekerjaan wali" 
-                        required
-                    >
-                </div>
-
-                <div>
-                    <label class="block mb-1 font-semibold">Nomor Telepon:</label>
-                    <input 
-                        type="text" 
-                        name="phone" 
-                        value="{{ old('phone', $guardian->phone) }}" 
-                        class="border w-full p-2 rounded focus:outline-none focus:ring focus:ring-green-300" 
-                        placeholder="Masukkan nomor telepon wali" 
-                        required
-                    >
-                </div>
-
-                <div>
-                    <label class="block mb-1 font-semibold">Email:</label>
-                    <input 
-                        type="email" 
-                        name="email" 
-                        value="{{ old('email', $guardian->email) }}" 
-                        class="border w-full p-2 rounded focus:outline-none focus:ring focus:ring-green-300" 
-                        placeholder="Masukkan email wali" 
-                        required
-                    >
-                </div>
+            {{-- Header --}}
+            <div class="mb-6">
+                <h1 class="text-3xl font-bold text-gray-800 dark:text-white">Edit Data Wali Murid</h1>
+                <p class="text-gray-600 dark:text-gray-400 mt-2">Perbarui informasi wali murid</p>
             </div>
 
-            <div class="mt-6">
-                <button 
-                    type="submit" 
-                    class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
-                >
-                    Perbarui
-                </button>
+            {{-- Form Card --}}
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden">
+                <form action="{{ route('admin.guardians.update', $guardian->id) }}" method="POST" class="p-8 space-y-6">
+                    @csrf
+                    @method('PUT')
 
-                <a 
-                    href="{{ route('admin.guardians.index') }}" 
-                    class="ml-2 bg-gray-400 hover:bg-gray-500 text-white px-4 py-2 rounded"
-                >
-                    Batal
-                </a>
+                    {{-- Nama --}}
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                            Nama <span class="text-red-500">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            name="name" 
+                            value="{{ old('name', $guardian->name) }}"
+                            class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 transition"
+                            placeholder="Nama wali murid" 
+                            required
+                        >
+                        @error('name')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    {{-- Pekerjaan --}}
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                            Pekerjaan <span class="text-red-500">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            name="job" 
+                            value="{{ old('job', $guardian->job) }}"
+                            class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 transition"
+                            placeholder="Pekerjaan wali murid" 
+                            required
+                        >
+                        @error('job')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    {{-- Nomor Telepon --}}
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                            Nomor Telepon <span class="text-red-500">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            name="phone" 
+                            value="{{ old('phone', $guardian->phone) }}"
+                            class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 transition"
+                            placeholder="Nomor telepon" 
+                            required
+                        >
+                        @error('phone')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    {{-- Email --}}
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                            Email <span class="text-red-500">*</span>
+                        </label>
+                        <input 
+                            type="email" 
+                            name="email" 
+                            value="{{ old('email', $guardian->email) }}"
+                            class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 transition"
+                            placeholder="Email wali murid" 
+                            required
+                        >
+                        @error('email')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    {{-- Actions --}}
+                    <div class="flex gap-3 pt-6 border-t border-gray-200 dark:border-gray-700">
+                        <a 
+                            href="{{ route('admin.guardians.index') }}" 
+                            class="px-6 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded-lg font-medium transition shadow-sm"
+                        >
+                            Batal
+                        </a>
+                        <button 
+                            type="submit" 
+                            class="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition shadow-sm"
+                        >
+                            Perbarui
+                        </button>
+                    </div>
+                </form>
             </div>
-        </form>
+
+        </div>
     </div>
 </x-admin.layout>

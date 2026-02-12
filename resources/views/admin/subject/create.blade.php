@@ -1,38 +1,71 @@
 <x-admin.layout>
-    <div class="p-6">
-        <h1 class="text-xl font-bold mb-4">Tambah Mata Pelajaran</h1>
+    <div class="min-h-screen bg-gray-100 dark:bg-gray-900 py-8">
+        <div class="max-w-3xl mx-auto px-6">
 
-        <form action="{{ route('admin.subjects.store') }}" method="POST">
-            @csrf
-
-            <div class="grid grid-cols-2 gap-4">
-
-                {{-- Nama Mapel --}}
-                <div>
-                    <label class="font-medium">Nama Mapel:</label>
-                    <input 
-                        type="text" 
-                        name="name" 
-                        class="border w-full p-2 rounded" 
-                        required>
-                </div>
-
-                {{-- Deskripsi Mapel --}}
-                <div>
-                    <label class="font-medium">Deskripsi:</label>
-                    <input
-                        type="text"
-                        name="description"
-                        class="border w-full p-2 rounded"
-                        required>
-                </div>
-
+            {{-- Header --}}
+            <div class="mb-6">
+                <h1 class="text-3xl font-bold text-gray-800 dark:text-white">Tambah Mata Pelajaran</h1>
+                <p class="text-gray-600 dark:text-gray-400 mt-2">Tambahkan mata pelajaran baru ke sistem</p>
             </div>
 
-            <button 
-                class="bg-green-500 text-white px-4 py-2 rounded mt-4 shadow hover:bg-green-600 transition">
-                Simpan
-            </button>
-        </form>
+            {{-- Form Card --}}
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden">
+                <form action="{{ route('admin.subjects.store') }}" method="POST" class="p-8 space-y-6">
+                    @csrf
+
+                    {{-- Nama Mapel --}}
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                            Nama Mata Pelajaran <span class="text-red-500">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            name="name" 
+                            value="{{ old('name') }}"
+                            class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 transition"
+                            placeholder="Nama mata pelajaran" 
+                            required
+                        >
+                        @error('name')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    {{-- Deskripsi --}}
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                            Deskripsi <span class="text-red-500">*</span>
+                        </label>
+                        <textarea 
+                            name="description" 
+                            rows="4"
+                            class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 transition resize-vertical"
+                            placeholder="Deskripsi mata pelajaran"
+                            required
+                        >{{ old('description') }}</textarea>
+                        @error('description')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    {{-- Actions --}}
+                    <div class="flex gap-3 pt-6 border-t border-gray-200 dark:border-gray-700">
+                        <a 
+                            href="{{ route('admin.subjects.index') }}" 
+                            class="px-6 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded-lg font-medium transition shadow-sm"
+                        >
+                            Batal
+                        </a>
+                        <button 
+                            type="submit" 
+                            class="px-6 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium transition shadow-sm"
+                        >
+                            Simpan
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
     </div>
 </x-admin.layout>
