@@ -35,7 +35,7 @@ class ClassroomAdminController extends Controller
             'name' => $request->name
         ]);
 
-        return redirect()->route('admin.classroom.index')->with('success', 'Data berhasil ditambahkan');
+        return redirect()->route('admin.classrooms.index')->with('success', 'Data berhasil ditambahkan');
     }
 
     public function edit($id)
@@ -56,6 +56,6 @@ class ClassroomAdminController extends Controller
             'name' => $request->name
         ]);
 
-        return redirect()->route('admin.classroom.index')->with('success', 'Data berhasil diupdate');
+        return redirect()->route('admin.classrooms.index')->with('success', 'Data berhasil diupdate');
     }
 }

@@ -41,7 +41,7 @@ class StudentAdminController extends Controller
         ]);
 
         Student::create($request->all());
-        return redirect()->route('admin.student.index')->with('success', 'Data siswa berhasil ditambahkan!');
+        return redirect()->route('admin.students.index')->with('success', 'Data siswa berhasil ditambahkan!');
     }
 
     public function edit(Student $student)
@@ -54,20 +54,19 @@ class StudentAdminController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:students,email,' . $student->id, //berfungsi untuk mengabaikan (exclude) email milik siswa yang sedang diedit
-            'classroom_id' => 'required|integer',
+            'email' => 'required|email|unique:students,email,' . $student->id,
             'alamat' => 'required|string|max:255',
             'birthday' => 'required|date',
             'gender' => 'required|string',
         ]);
 
         $student->update($request->all());
-        return redirect()->route('admin.student.index')->with('success', 'Data siswa berhasil diperbarui!');
+        return redirect()->route('admin.students.index')->with('success', 'Data siswa berhasil diperbarui!');
     }
 
     public function destroy(Student $student)
     {
         $student->delete();
-        return redirect()->route('admin.student.index')->with('success', 'Data siswa berhasil dihapus!');
+        return redirect()->route('admin.students.index')->with('success', 'Data siswa berhasil dihapus!');
     }
 }

@@ -75,15 +75,7 @@
                                                 Edit
                                             </a>
 
-                                            <form action="{{ route('admin.subjects.destroy', $mapel->id) }}" method="POST"
-                                                onsubmit="return confirm('Yakin ingin hapus data ini?')">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit"
-                                                    class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-xs shadow">
-                                                    Hapus
-                                                </button>
-                                            </form>
+
                                         </div>
                                     </td>
                                 </tr>

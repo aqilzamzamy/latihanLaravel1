@@ -33,7 +33,7 @@ Route::get('/profile', [ProfilController::class, 'profil']);
 Route::get('/kontak', [ContactController::class, 'contact']);
 Route::get('/student', [StudentController::class, 'index']);
 Route::get('/wali', [GuardianController::class, 'index']);
-Route::get('/teacher', [TeacherController::class, 'index']);
+Route::get('/teachers', [TeacherController::class, 'index']);
 Route::get('/classrooms', [ClassroomController::class, 'index']);
 Route::get('/subjects', [SubjectController::class, 'index']);
 
