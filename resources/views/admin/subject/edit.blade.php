@@ -1,56 +1,72 @@
 <x-admin.layout>
-    <div class="p-6">
-        <h1 class="text-xl font-bold mb-4">Edit Mata Pelajaran</h1>
+    <div class="min-h-screen bg-gray-100 dark:bg-gray-900 py-8">
+        <div class="max-w-3xl mx-auto px-6">
 
-        <form action="{{ route('admin.subjects.update', $subject->id) }}" method="POST">
-            @csrf
-            @method('PUT')
-
-            <div class="grid grid-cols-2 gap-4">
-
-                {{-- Nama Mapel --}}
-                <div>
-                    <label class="block mb-1 font-semibold">Nama Mapel:</label>
-                    <input 
-                        type="text" 
-                        name="name" 
-                        value="{{ old('name', $subject->name) }}" 
-                        class="border w-full p-2 rounded focus:outline-none focus:ring focus:ring-green-300" 
-                        placeholder="Masukkan nama mapel" 
-                        required
-                    >
-                </div>
-
-                {{-- Deskripsi --}}
-                <div>
-                    <label class="block mb-1 font-semibold">Deskripsi:</label>
-                    <input 
-                        type="text" 
-                        name="description" 
-                        value="{{ old('description', $subject->description) }}" 
-                        class="border w-full p-2 rounded focus:outline-none focus:ring focus:ring-green-300" 
-                        placeholder="Masukkan deskripsi mapel" 
-                        required
-                    >
-                </div>
-
+            {{-- Header --}}
+            <div class="mb-6">
+                <h1 class="text-3xl font-bold text-gray-800 dark:text-white">Edit Mata Pelajaran</h1>
+                <p class="text-gray-600 dark:text-gray-400 mt-2">Perbarui informasi mata pelajaran</p>
             </div>
 
-            <div class="mt-6">
-                <button 
-                    type="submit" 
-                    class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
-                >
-                    Perbarui
-                </button>
+            {{-- Form Card --}}
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden">
+                <form action="{{ route('admin.subjects.update', $subject->id) }}" method="POST" class="p-8 space-y-6">
+                    @csrf
+                    @method('PUT')
 
-                <a 
-                    href="{{ route('admin.subjects.index') }}" 
-                    class="ml-2 bg-gray-400 hover:bg-gray-500 text-white px-4 py-2 rounded"
-                >
-                    Batal
-                </a>
+                    {{-- Nama Mapel --}}
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                            Nama Mata Pelajaran <span class="text-red-500">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            name="name" 
+                            value="{{ old('name', $subject->name) }}"
+                            class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 transition"
+                            placeholder="Nama mata pelajaran" 
+                            required
+                        >
+                        @error('name')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    {{-- Deskripsi --}}
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                            Deskripsi <span class="text-red-500">*</span>
+                        </label>
+                        <textarea 
+                            name="description" 
+                            rows="4"
+                            class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 transition resize-vertical"
+                            placeholder="Deskripsi mata pelajaran"
+                            required
+                        >{{ old('description', $subject->description) }}</textarea>
+                        @error('description')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    {{-- Actions --}}
+                    <div class="flex gap-3 pt-6 border-t border-gray-200 dark:border-gray-700">
+                        <a 
+                            href="{{ route('admin.subjects.index') }}" 
+                            class="px-6 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded-lg font-medium transition shadow-sm"
+                        >
+                            Batal
+                        </a>
+                        <button 
+                            type="submit" 
+                            class="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition shadow-sm"
+                        >
+                            Perbarui
+                        </button>
+                    </div>
+                </form>
             </div>
-        </form>
+
+        </div>
     </div>
 </x-admin.layout>

@@ -1,7 +1,7 @@
 @props(['active' => ''])
 
 <aside
-    class="fixed top-0 left-0 z-40 w-64 h-screen pt-14 transition-transform -translate-x-full
+    class="fixed top-5 left-0 z-40 w-64 h-screen pt-14 transition-transform -translate-x-full
            bg-gray-900 border-r border-gray-700 md:translate-x-0"
     aria-label="Sidebar">
     <div class="h-full px-3 pb-4 overflow-y-auto">
