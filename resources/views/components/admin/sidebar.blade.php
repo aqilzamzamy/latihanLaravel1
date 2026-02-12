@@ -33,7 +33,7 @@
         <x-admin.sidelink
             :href="route('admin.guardians.index')"
             :active="request()->routeIs('admin.guardians.*')">
-            <span>Walmur</span>
+            <span>Guardian</span>
         </x-admin.sidelink>
     </li>
 
@@ -68,8 +68,8 @@
             {{-- Teachers --}}
             {{-- <li>
                 <x-admin.sidelink 
-                    href="{{ route('teacher.index') }}" 
-                    :active="request()->routeIs('teacher.index')"
+                    href="{{ route('admin.teachers.index') }}" 
+                    :active="request()->routeIs('admin.teachers.*')"
                 >
                    
                     <span>Teachers</span>
@@ -79,8 +79,8 @@
             {{-- Subjects --}}
             {{-- <li>
                 <x-admin.sidelink 
-                    href="{{ route('subject.index') }}" 
-                    :active="request()->routeIs('subject.index')"
+                    href="{{ route('admin.subjects.index') }}" 
+                    :active="request()->routeIs('admin.subjects.*')"
                 >
                   
                     <span>Subjects</span>

@@ -37,7 +37,7 @@ class GuardianAdminController extends Controller
 
         Guardian::create($validated);
 
-        return redirect()->route('admin.guardian.index')
+        return redirect()->route('admin.guardians.index')
             ->with('success', 'Data wali berhasil ditambahkan!');
     }
 
@@ -60,7 +60,7 @@ class GuardianAdminController extends Controller
 
         $guardian->update($validated);
 
-        return redirect()->route('admin.guardian.index')
+        return redirect()->route('admin.guardians.index')
             ->with('success', 'Data wali berhasil diperbarui!');
     }
 
@@ -69,7 +69,7 @@ class GuardianAdminController extends Controller
         $guardian = Guardian::findOrFail($id);
         $guardian->delete();
 
-        return redirect()->route('admin.guardian.index')
+        return redirect()->route('admin.guardians.index')
             ->with('success', 'Data wali berhasil dihapus!');
     }
 }

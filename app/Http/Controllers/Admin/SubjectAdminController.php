@@ -36,7 +36,7 @@ class SubjectAdminController extends Controller
             'description' => $request->description
         ]);
 
-        return redirect()->route('admin.subject.index')
+        return redirect()->route('admin.subjects.index')
             ->with('success', 'Subject berhasil ditambahkan');
     }
 
@@ -60,7 +60,7 @@ class SubjectAdminController extends Controller
             'description' => $request->description
         ]);
 
-        return redirect()->route('admin.subject.index')
+        return redirect()->route('admin.subjects.index')
             ->with('success', 'Subject berhasil diperbarui');
     }
 }
